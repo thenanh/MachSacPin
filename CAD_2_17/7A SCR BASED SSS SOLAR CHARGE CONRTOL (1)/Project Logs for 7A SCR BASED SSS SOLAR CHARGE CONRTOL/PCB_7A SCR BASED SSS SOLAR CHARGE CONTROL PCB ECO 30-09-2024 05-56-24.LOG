@@ -1,0 +1,11 @@
+Change Component Comment : Designator=JP? Old Comment=JP 1x1 2.54 New Comment=JP load 1
+Change Component Comment : Designator=JP? Old Comment=JP 1x1 2.54 New Comment=JP load 2
+Change Component Comment : Designator=JP? Old Comment=JP 1x1 2.54 New Comment=JP solar 1
+Change Component Comment : Designator=JP? Old Comment=JP 1x1 2.54 New Comment=JP solar 2
+Change Component Designator: OldDesignator=JP? NewDesignator=JP1
+Change Component Designator: OldDesignator=JP? NewDesignator=JP2
+Change Component Designator: OldDesignator=JP? NewDesignator=JP3
+Change Component Designator: OldDesignator=JP? NewDesignator=JP4
+Added Member To Class: ClassName=7A SCR BASED SSS SOLAR CHARGE CONTROL Member=Component JP2 JP solar 2
+Added Member To Class: ClassName=7A SCR BASED SSS SOLAR CHARGE CONTROL Member=Component JP3 JP load 1
+Added Member To Class: ClassName=7A SCR BASED SSS SOLAR CHARGE CONTROL Member=Component JP4 JP load 2

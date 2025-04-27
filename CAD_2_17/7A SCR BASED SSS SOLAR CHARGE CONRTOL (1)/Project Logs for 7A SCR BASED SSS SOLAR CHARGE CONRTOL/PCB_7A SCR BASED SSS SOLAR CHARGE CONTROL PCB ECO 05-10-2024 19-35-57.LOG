@@ -1,0 +1,7 @@
+Change Component Library : Designator=C2 Old Library=Capacitor.SchLib New Library=Component.SchLib
+Change Net Name : Old Net Name=NetB1_1 New Net Name=VCC 15
+Change Net Name : Old Net Name=NetC1_2 New Net Name=GND
+Added Member To Class: ClassName=7A SCR BASED SSS SOLAR CHARGE CONTROL Member=Component D4 TL431
+Added Member To Class: ClassName=7A SCR BASED SSS SOLAR CHARGE CONTROL Member=Component Q6 Vcc-3.1v
+Added Member To Class: ClassName=7A SCR BASED SSS SOLAR CHARGE CONTROL Member=Component R18 100k
+Added Room: Name=7A SCR BASED SSS SOLAR CHARGE CONTROL

@@ -1,0 +1,10 @@
+Output: Pcad for PCB
+Type  : Pcad
+From  : Project [7A SCR BASED SSS SOLAR CHARGE CONRTOL.PrjPcb]
+   Generated File[7A SCR BASED SSS SOLAR CHARGE CONTROL.NET]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 23:53:08 On 12/11/2024

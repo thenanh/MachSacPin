@@ -1,0 +1,8 @@
+Change Component Footprint: Designator=R21 Old Footprint=Bien Tro Volume Don New Footprint=BIEN TRO VI CHINH NAM
+Change component parameters: Designator = "R21" ("R21"); Footprint = "Bien Tro Volume Don"; UniqueID = "\FROENRLC" ("\FROENRLC")
+Change component parameters (AddParameter): Name = "Chung_Loai"; Value = "C?m"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ghi_Chu"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ma_Hang"; Value = "MH003232"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ten_Linh_Kien"; Value = "Bi?n Tr? VR 103-10K 3296W"; VariantName = "[No Variations]"

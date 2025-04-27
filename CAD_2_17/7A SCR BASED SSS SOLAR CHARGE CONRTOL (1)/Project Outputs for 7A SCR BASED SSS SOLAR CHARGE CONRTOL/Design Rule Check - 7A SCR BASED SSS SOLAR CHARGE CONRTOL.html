@@ -1,0 +1,622 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">13/11/2024</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">01:56:24</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc" class="file"><acronym title="E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc">E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">94</td></tr>
+</table>
+</td>
+</table><a name="IDDKT21P32Q2UPILBFUDKLVUHVPWSP013MCKL5KO2LOWZBD2ONQYJ"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVTEDQSN0RH00HOE14HYJ0C5IOOBYPUFX1YPIJOIUF033DTCWKUPP">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1XQUGZNTXI4WGXG5ZF5JV2BDAEIVDLKNNCCGDGKWZ2RVBPFGJNWG">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDV2C1YHQOJ1UVO1ASYGPR5C2QUBHLYLTD3KVYDPIPLIKWBN4QM5NF">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJQYO4CKCKTU4JFPGEMEGSY2UGLK0DOIXKLXWIZPDZNUTS4EFHBWP">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUDVSYRMWFO4DKZPLLNSWP0WDAPH5YVUKWH54OSPPE4YUIRAGTMFF">Width Constraint (Min=0.3mm) (Max=0.8mm) (Preferred=0.5mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID413FPRSSFOJSDGLTPTD5FV53HNJMDKTEARHCOJKXBI0OWUIJI2FE">Width Constraint (Min=0.5mm) (Max=1.6mm) (Preferred=1.2mm) (InNet('GND'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQUCHXHRZCZM2BNRDJADENNMFFKYWJ530RRFBDVLPP1AI1HKDXBB">Width Constraint (Min=0.5mm) (Max=1.6mm) (Preferred=1.2mm) (InNet('vcc-15v'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMMDDWHOMZWAHKDZQW0FOXV4KPZET5W01LVNXFNR5AOMDIW2T2EJ">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAEJXN1WAOE1LIDQOULKKDQHZAN3KNMAF2YQQKABM5FLMPSC2N40H">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZLV3N21FANAIJRS3MBDJMMATAE0OFRYVO2PFJKGHXSRIIQXAICOO">Hole To Hole Clearance (Gap=0.1mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJWL0PMVHLBTDFV2DGK4JKVFRB2REOTOREQTI0HV4XYWGWY11B3D">Minimum Solder Mask Sliver (Gap=0.05mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRUQRESAX0WSNDE0QCJVBJRQ3VGB1DUXFWLM3X0OAYPCHSKY0PYR">Silk To Solder Mask (Clearance=0.05mm) (IsPad),(All)</a></td>
+<td class="column2">94</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLJXPDRDCDPWQNVZV4IT1Y5HLQPAQEXUAZM3WBSKFROYZM0MXPQID">Silk to Silk (Clearance=0.05mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWEZ4B4Q4WCRBGWMUR1RT3WXXPGNI1H2XXKLLUHT4LPHP4DZTBO">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQLAZIPUXDRGEI1BAKNDBMTPPVC2Q1YHTWR2EHTCTBXKZY1ULDTPD">Room 7A SCR BASED SSS SOLAR CHARGE CONTROL (Bounding Region = (33.655mm, 82.55mm, 106.172mm, 127mm) (InComponentClass('7A SCR BASED SSS SOLAR CHARGE CONTROL'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDK3XUDOL2AQEUP0UZRAOCKFDZHEYU22IKUJO525PO4IX0XI1JGT1B">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">94</td>
+</tr>
+</table><br><a name="IDRUQRESAX0WSNDE0QCJVBJRQ3VGB1DUXFWLM3X0OAYPCHSKY0PYR"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.05mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1935.255mil|Location2.X=1937.567mil|Location1.Y=3879.138mil|Location2.Y=3881.451mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1935.255mil|Location2.X=1937.567mil|Location1.Y=3879.138mil|Location2.Y=3881.451mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (15.557mm,18.676mm) on Top Overlay And Pad SCR1-3(15.557mm,16.518mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1903.344mil|Location2.X=1905.656mil|Location1.Y=4083.832mil|Location2.Y=4086.144mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1903.344mil|Location2.X=1905.656mil|Location1.Y=4083.832mil|Location2.Y=4086.144mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (15.557mm,18.677mm) on Top Overlay And Pad SCR1-1(15.557mm,20.836mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2232.755mil|Location2.X=2235.067mil|Location1.Y=3879.138mil|Location2.Y=3881.451mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2232.755mil|Location2.X=2235.067mil|Location1.Y=3879.138mil|Location2.Y=3881.451mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (23.114mm,18.676mm) on Top Overlay And Pad SCR2-3(23.114mm,16.518mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2200.844mil|Location2.X=2203.156mil|Location1.Y=4083.832mil|Location2.Y=4086.144mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2200.844mil|Location2.X=2203.156mil|Location1.Y=4083.832mil|Location2.Y=4086.144mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (23.114mm,18.677mm) on Top Overlay And Pad SCR2-1(23.114mm,20.836mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2976.433mil|Location2.X=2978.745mil|Location1.Y=4078.193mil|Location2.Y=4080.505mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2976.433mil|Location2.X=2978.745mil|Location1.Y=4078.193mil|Location2.Y=4080.505mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (43.534mm,23.977mm) on Top Overlay And Pad Q3-1(43.218mm,21.412mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.37mil|Location2.X=2987.682mil|Location1.Y=4311.786mil|Location2.Y=4314.098mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.37mil|Location2.X=2987.682mil|Location1.Y=4311.786mil|Location2.Y=4314.098mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (43.534mm,23.977mm) on Top Overlay And Pad Q3-3(43.218mm,26.492mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2976.433mil|Location2.X=2978.745mil|Location1.Y=3525.539mil|Location2.Y=3527.851mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2976.433mil|Location2.X=2978.745mil|Location1.Y=3525.539mil|Location2.Y=3527.851mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (43.534mm,9.939mm) on Top Overlay And Pad Q2-1(43.218mm,7.375mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.37mil|Location2.X=2987.682mil|Location1.Y=3759.132mil|Location2.Y=3761.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2985.37mil|Location2.X=2987.682mil|Location1.Y=3759.132mil|Location2.Y=3761.444mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (43.534mm,9.939mm) on Top Overlay And Pad Q2-3(43.218mm,12.455mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1547.755mil|Location2.X=1550.067mil|Location1.Y=3879.138mil|Location2.Y=3881.451mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1547.755mil|Location2.X=1550.067mil|Location1.Y=3879.138mil|Location2.Y=3881.451mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (5.715mm,18.676mm) on Top Overlay And Pad Q1-3(5.715mm,16.518mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515.844mil|Location2.X=1518.156mil|Location1.Y=4083.832mil|Location2.Y=4086.144mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515.844mil|Location2.X=1518.156mil|Location1.Y=4083.832mil|Location2.Y=4086.144mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (5.715mm,18.677mm) on Top Overlay And Pad Q1-1(5.715mm,20.836mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3349.933mil|Location2.X=3352.245mil|Location1.Y=3525.539mil|Location2.Y=3527.851mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3349.933mil|Location2.X=3352.245mil|Location1.Y=3525.539mil|Location2.Y=3527.851mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (53.021mm,9.939mm) on Top Overlay And Pad Q4-1(52.705mm,7.375mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3358.87mil|Location2.X=3361.182mil|Location1.Y=3759.132mil|Location2.Y=3761.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3358.87mil|Location2.X=3361.182mil|Location1.Y=3759.132mil|Location2.Y=3761.444mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (53.021mm,9.939mm) on Top Overlay And Pad Q4-3(52.705mm,12.455mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3793.826mil|Location2.X=3796.138mil|Location1.Y=3706.19mil|Location2.Y=3708.502mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3793.826mil|Location2.X=3796.138mil|Location1.Y=3706.19mil|Location2.Y=3708.502mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (65.404mm,11.617mm) on Top Overlay And Pad Q5-3(63.246mm,11.617mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3998.524mil|Location2.X=4000.837mil|Location1.Y=3673.19mil|Location2.Y=3675.502mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3998.524mil|Location2.X=4000.837mil|Location1.Y=3673.19mil|Location2.Y=3675.502mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (65.405mm,11.617mm) on Top Overlay And Pad Q5-1(67.564mm,11.617mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4079.978mil|Location2.X=4082.29mil|Location1.Y=4737.976mil|Location2.Y=4740.289mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4079.978mil|Location2.X=4082.29mil|Location1.Y=4737.976mil|Location2.Y=4740.289mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Arc (70.383mm,37.44mm) on Top Overlay And Pad R21-1(69.596mm,38.837mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1548.233mil|Location2.X=1551.452mil|Location1.Y=3688.391mil|Location2.Y=3691.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1548.233mil|Location2.X=1551.452mil|Location1.Y=3688.391mil|Location2.Y=3691.609mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.008mm &lt; 0.05mm) Between Pad C1-1(5.207mm,11.557mm) on Multi-Layer And Track (5.842mm,11.176mm)(5.842mm,11.227mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.008mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1548.233mil|Location2.X=1551.452mil|Location1.Y=3690.391mil|Location2.Y=3693.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1548.233mil|Location2.X=1551.452mil|Location1.Y=3690.391mil|Location2.Y=3693.609mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.008mm &lt; 0.05mm) Between Pad C1-1(5.207mm,11.557mm) on Multi-Layer And Track (5.842mm,11.227mm)(7.391mm,12.776mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.008mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1548.233mil|Location2.X=1551.452mil|Location1.Y=3714.391mil|Location2.Y=3717.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1548.233mil|Location2.X=1551.452mil|Location1.Y=3714.391mil|Location2.Y=3717.609mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.008mm &lt; 0.05mm) Between Pad C1-1(5.207mm,11.557mm) on Multi-Layer And Track (5.842mm,11.836mm)(5.842mm,11.963mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.008mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1548.233mil|Location2.X=1551.452mil|Location1.Y=3719.391mil|Location2.Y=3722.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1548.233mil|Location2.X=1551.452mil|Location1.Y=3719.391mil|Location2.Y=3722.609mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.008mm &lt; 0.05mm) Between Pad C1-1(5.207mm,11.557mm) on Multi-Layer And Track (5.842mm,11.963mm)(6.985mm,13.106mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.008mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1548.233mil|Location2.X=1551.452mil|Location1.Y=3673.863mil|Location2.Y=3677.082mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1548.233mil|Location2.X=1551.452mil|Location1.Y=3673.863mil|Location2.Y=3677.082mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.008mm &lt; 0.05mm) Between Pad C1-1(5.207mm,11.557mm) on Multi-Layer And Track (5.842mm,9.601mm)(5.842mm,13.564mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.008mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1571.005mil|Location2.X=1573.317mil|Location1.Y=3678.005mil|Location2.Y=3680.317mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1571.005mil|Location2.X=1573.317mil|Location1.Y=3678.005mil|Location2.Y=3680.317mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C1-2(6.477mm,11.557mm) on Multi-Layer And Track (5.842mm,10.465mm)(7.671mm,12.294mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1558.59mil|Location2.X=1561.809mil|Location1.Y=3691.139mil|Location2.Y=3694.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1558.59mil|Location2.X=1561.809mil|Location1.Y=3691.139mil|Location2.Y=3694.357mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.013mm &lt; 0.05mm) Between Pad C1-2(6.477mm,11.557mm) on Multi-Layer And Track (5.842mm,11.176mm)(5.842mm,11.227mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.013mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.15mil|Location2.X=1561.462mil|Location1.Y=3696.15mil|Location2.Y=3698.462mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.15mil|Location2.X=1561.462mil|Location1.Y=3696.15mil|Location2.Y=3698.462mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C1-2(6.477mm,11.557mm) on Multi-Layer And Track (5.842mm,11.227mm)(7.391mm,12.776mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1558.558mil|Location2.X=1561.776mil|Location1.Y=3714.235mil|Location2.Y=3717.453mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1558.558mil|Location2.X=1561.776mil|Location1.Y=3714.235mil|Location2.Y=3717.453mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.009mm &lt; 0.05mm) Between Pad C1-2(6.477mm,11.557mm) on Multi-Layer And Track (5.842mm,11.836mm)(5.842mm,11.963mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.009mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1556.793mil|Location2.X=1559.106mil|Location1.Y=3722.794mil|Location2.Y=3725.106mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1556.793mil|Location2.X=1559.106mil|Location1.Y=3722.794mil|Location2.Y=3725.106mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C1-2(6.477mm,11.557mm) on Multi-Layer And Track (5.842mm,11.963mm)(6.985mm,13.106mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1558.544mil|Location2.X=1561.762mil|Location1.Y=3693.548mil|Location2.Y=3696.767mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1558.544mil|Location2.X=1561.762mil|Location1.Y=3693.548mil|Location2.Y=3696.767mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.008mm &lt; 0.05mm) Between Pad C1-2(6.477mm,11.557mm) on Multi-Layer And Track (5.842mm,9.601mm)(5.842mm,13.564mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.008mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1592.875mil|Location2.X=1598.845mil|Location1.Y=3679.064mil|Location2.Y=3685.104mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1592.875mil|Location2.X=1598.845mil|Location1.Y=3679.064mil|Location2.Y=3685.104mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.04mm &lt; 0.05mm) Between Pad C1-2(6.477mm,11.557mm) on Multi-Layer And Track (5.867mm,9.754mm)(7.849mm,11.735mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.04mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1472.915mil|Location2.X=1475.227mil|Location1.Y=4268.899mil|Location2.Y=4271.211mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1472.915mil|Location2.X=1475.227mil|Location1.Y=4268.899mil|Location2.Y=4271.211mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C2-2(4.496mm,25.527mm) on Multi-Layer And Track (3.252mm,25.375mm)(5.766mm,27.889mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1478.993mil|Location2.X=1481.305mil|Location1.Y=4241.976mil|Location2.Y=4244.289mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1478.993mil|Location2.X=1481.305mil|Location1.Y=4241.976mil|Location2.Y=4244.289mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C2-2(4.496mm,25.527mm) on Multi-Layer And Track (3.404mm,24.689mm)(5.766mm,27.051mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1497.841mil|Location2.X=1500.153mil|Location1.Y=4225.825mil|Location2.Y=4228.137mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1497.841mil|Location2.X=1500.153mil|Location1.Y=4225.825mil|Location2.Y=4228.137mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C2-2(4.496mm,25.527mm) on Multi-Layer And Track (3.76mm,24.155mm)(5.766mm,26.162mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2018.249mil|Location2.X=2020.561mil|Location1.Y=4510.789mil|Location2.Y=4513.101mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2018.249mil|Location2.X=2020.561mil|Location1.Y=4510.789mil|Location2.Y=4513.101mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C3-2(19.103mm,32.377mm) on Multi-Layer And Track (14.394mm,35.298mm)(22.903mm,26.789mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2031.748mil|Location2.X=2034.06mil|Location1.Y=4562.29mil|Location2.Y=4564.602mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2031.748mil|Location2.X=2034.06mil|Location1.Y=4562.29mil|Location2.Y=4564.602mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C3-2(19.103mm,32.377mm) on Multi-Layer And Track (14.902mm,36.441mm)(22.903mm,28.44mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2070.334mil|Location2.X=2072.647mil|Location1.Y=4583.703mil|Location2.Y=4586.016mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2070.334mil|Location2.X=2072.647mil|Location1.Y=4583.703mil|Location2.Y=4586.016mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C3-2(19.103mm,32.377mm) on Multi-Layer And Track (15.537mm,37.33mm)(22.903mm,29.964mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3606.962mil|Location2.X=3609.274mil|Location1.Y=3592.059mil|Location2.Y=3594.372mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3606.962mil|Location2.X=3609.274mil|Location1.Y=3592.059mil|Location2.Y=3594.372mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C4-2(58.801mm,9mm) on Multi-Layer And Track (56.439mm,10.27mm)(58.953mm,7.755mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3641.724mil|Location2.X=3644.036mil|Location1.Y=3590.298mil|Location2.Y=3592.61mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3641.724mil|Location2.X=3644.036mil|Location1.Y=3590.298mil|Location2.Y=3592.61mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C4-2(58.801mm,9mm) on Multi-Layer And Track (57.277mm,10.27mm)(59.639mm,7.908mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3635.125mil|Location2.X=3637.437mil|Location1.Y=3631.897mil|Location2.Y=3634.209mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3635.125mil|Location2.X=3637.437mil|Location1.Y=3631.897mil|Location2.Y=3634.209mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad C4-2(58.801mm,9mm) on Multi-Layer And Track (58.166mm,10.27mm)(60.173mm,8.263mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2678.391mil|Location2.X=2681.609mil|Location1.Y=4720.938mil|Location2.Y=4724.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2678.391mil|Location2.X=2681.609mil|Location1.Y=4720.938mil|Location2.Y=4724.156mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.038mm &lt; 0.05mm) Between Pad D1-1(34.417mm,38.438mm) on Multi-Layer And Track (34.417mm,36.533mm)(34.417mm,37.295mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.038mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2678.391mil|Location2.X=2681.609mil|Location1.Y=4502.447mil|Location2.Y=4505.665mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2678.391mil|Location2.X=2681.609mil|Location1.Y=4502.447mil|Location2.Y=4505.665mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.038mm &lt; 0.05mm) Between Pad D1-2(34.417mm,30.818mm) on Multi-Layer And Track (34.417mm,31.961mm)(34.417mm,32.723mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.038mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.844mil|Location2.X=1541.156mil|Location1.Y=4075.278mil|Location2.Y=4077.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.844mil|Location2.X=1541.156mil|Location1.Y=4075.278mil|Location2.Y=4077.59mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad Q1-1(5.715mm,20.836mm) on Multi-Layer And Track (5.461mm,20.937mm)(5.461mm,21.344mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.844mil|Location2.X=1541.156mil|Location1.Y=3879.152mil|Location2.Y=3881.464mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.844mil|Location2.X=1541.156mil|Location1.Y=3879.152mil|Location2.Y=3881.464mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad Q1-3(5.715mm,16.518mm) on Multi-Layer And Track (5.461mm,16.01mm)(5.461mm,16.416mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3065.58mil|Location2.X=3067.892mil|Location1.Y=3523.854mil|Location2.Y=3526.166mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3065.58mil|Location2.X=3067.892mil|Location1.Y=3523.854mil|Location2.Y=3526.166mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad Q2-1(43.218mm,7.375mm) on Multi-Layer And Track (44.24mm,6.985mm)(44.869mm,7.426mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3064.344mil|Location2.X=3066.656mil|Location1.Y=3757.192mil|Location2.Y=3759.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3064.344mil|Location2.X=3066.656mil|Location1.Y=3757.192mil|Location2.Y=3759.504mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad Q2-3(43.218mm,12.455mm) on Multi-Layer And Track (44.209mm,12.912mm)(44.869mm,12.582mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3065.58mil|Location2.X=3067.892mil|Location1.Y=4076.508mil|Location2.Y=4078.82mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3065.58mil|Location2.X=3067.892mil|Location1.Y=4076.508mil|Location2.Y=4078.82mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad Q3-1(43.218mm,21.412mm) on Multi-Layer And Track (44.24mm,21.023mm)(44.869mm,21.463mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3064.344mil|Location2.X=3066.656mil|Location1.Y=4309.846mil|Location2.Y=4312.158mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3064.344mil|Location2.X=3066.656mil|Location1.Y=4309.846mil|Location2.Y=4312.158mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad Q3-3(43.218mm,26.492mm) on Multi-Layer And Track (44.209mm,26.949mm)(44.869mm,26.619mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3439.08mil|Location2.X=3441.392mil|Location1.Y=3523.854mil|Location2.Y=3526.166mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3439.08mil|Location2.X=3441.392mil|Location1.Y=3523.854mil|Location2.Y=3526.166mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad Q4-1(52.705mm,7.375mm) on Multi-Layer And Track (53.727mm,6.985mm)(54.356mm,7.426mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3437.844mil|Location2.X=3440.156mil|Location1.Y=3757.192mil|Location2.Y=3759.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3437.844mil|Location2.X=3440.156mil|Location1.Y=3757.192mil|Location2.Y=3759.504mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad Q4-3(52.705mm,12.455mm) on Multi-Layer And Track (53.696mm,12.912mm)(54.356mm,12.582mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3999.003mil|Location2.X=4001.315mil|Location1.Y=3716.19mil|Location2.Y=3718.502mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3999.003mil|Location2.X=4001.315mil|Location1.Y=3716.19mil|Location2.Y=3718.502mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad Q5-1(67.564mm,11.617mm) on Multi-Layer And Track (67.666mm,11.871mm)(68.072mm,11.871mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3793.844mil|Location2.X=3796.156mil|Location1.Y=3716.19mil|Location2.Y=3718.502mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3793.844mil|Location2.X=3796.156mil|Location1.Y=3716.19mil|Location2.Y=3718.502mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad Q5-3(63.246mm,11.617mm) on Multi-Layer And Track (62.738mm,11.871mm)(63.144mm,11.871mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2546.48mil|Location2.X=2548.792mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2546.48mil|Location2.X=2548.792mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R10-1(31.055mm,2.393mm) on Multi-Layer And Track (31.055mm,3.099mm)(31.055mm,4.42mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2546.48mil|Location2.X=2548.792mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2546.48mil|Location2.X=2548.792mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R10-2(31.055mm,12.593mm) on Multi-Layer And Track (31.055mm,10.592mm)(31.055mm,11.913mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1478.056mil|Location2.X=1480.368mil|Location1.Y=4477.498mil|Location2.Y=4479.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1478.056mil|Location2.X=1480.368mil|Location1.Y=4477.498mil|Location2.Y=4479.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R1-1(3.917mm,30.502mm) on Multi-Layer And Track (3.917mm,31.208mm)(3.917mm,32.529mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2988.844mil|Location2.X=2991.156mil|Location1.Y=4477.498mil|Location2.Y=4479.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2988.844mil|Location2.X=2991.156mil|Location1.Y=4477.498mil|Location2.Y=4479.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R11-1(42.291mm,30.502mm) on Multi-Layer And Track (42.291mm,31.208mm)(42.291mm,32.529mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2988.844mil|Location2.X=2991.156mil|Location1.Y=4824.166mil|Location2.Y=4826.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2988.844mil|Location2.X=2991.156mil|Location1.Y=4824.166mil|Location2.Y=4826.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R11-2(42.291mm,40.702mm) on Multi-Layer And Track (42.291mm,38.701mm)(42.291mm,40.022mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1478.056mil|Location2.X=1480.368mil|Location1.Y=4824.166mil|Location2.Y=4826.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1478.056mil|Location2.X=1480.368mil|Location1.Y=4824.166mil|Location2.Y=4826.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R1-2(3.917mm,40.702mm) on Multi-Layer And Track (3.917mm,38.701mm)(3.917mm,40.022mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.056mil|Location2.X=3200.368mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.056mil|Location2.X=3200.368mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R12-1(47.605mm,16.43mm) on Multi-Layer And Track (47.605mm,17.136mm)(47.605mm,18.457mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.056mil|Location2.X=3200.368mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.056mil|Location2.X=3200.368mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R12-2(47.605mm,26.63mm) on Multi-Layer And Track (47.605mm,24.629mm)(47.605mm,25.95mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3326.482mil|Location2.X=3328.794mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3326.482mil|Location2.X=3328.794mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R13-1(50.867mm,16.43mm) on Multi-Layer And Track (50.867mm,17.136mm)(50.867mm,18.457mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3326.482mil|Location2.X=3328.794mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3326.482mil|Location2.X=3328.794mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R13-2(50.867mm,26.63mm) on Multi-Layer And Track (50.867mm,24.629mm)(50.867mm,25.95mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.056mil|Location2.X=3200.368mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.056mil|Location2.X=3200.368mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R14-1(47.605mm,2.393mm) on Multi-Layer And Track (47.605mm,3.099mm)(47.605mm,4.42mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.056mil|Location2.X=3200.368mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.056mil|Location2.X=3200.368mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R14-2(47.605mm,12.593mm) on Multi-Layer And Track (47.605mm,10.592mm)(47.605mm,11.913mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3453.056mil|Location2.X=3455.368mil|Location1.Y=4269.498mil|Location2.Y=4271.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3453.056mil|Location2.X=3455.368mil|Location1.Y=4269.498mil|Location2.Y=4271.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R15-1(54.082mm,26.63mm) on Multi-Layer And Track (54.082mm,24.604mm)(54.082mm,25.925mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3453.056mil|Location2.X=3455.368mil|Location1.Y=3922.498mil|Location2.Y=3924.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3453.056mil|Location2.X=3455.368mil|Location1.Y=3922.498mil|Location2.Y=3924.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R15-2(54.082mm,16.43mm) on Multi-Layer And Track (54.082mm,17.111mm)(54.082mm,18.432mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4094.908mil|Location2.X=4097.22mil|Location1.Y=3716.844mil|Location2.Y=3719.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4094.908mil|Location2.X=4097.22mil|Location1.Y=3716.844mil|Location2.Y=3719.156mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R16-1(70.385mm,12.593mm) on Multi-Layer And Track (70.385mm,10.566mm)(70.385mm,11.887mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4094.908mil|Location2.X=4097.22mil|Location1.Y=3369.844mil|Location2.Y=3372.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4094.908mil|Location2.X=4097.22mil|Location1.Y=3369.844mil|Location2.Y=3372.156mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R16-2(70.385mm,2.393mm) on Multi-Layer And Track (70.385mm,3.073mm)(70.385mm,4.394mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3581.482mil|Location2.X=3583.794mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3581.482mil|Location2.X=3583.794mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R17-1(57.344mm,16.43mm) on Multi-Layer And Track (57.344mm,17.136mm)(57.344mm,18.457mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3581.482mil|Location2.X=3583.794mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3581.482mil|Location2.X=3583.794mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R17-2(57.344mm,26.63mm) on Multi-Layer And Track (57.344mm,24.629mm)(57.344mm,25.95mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3709.908mil|Location2.X=3712.22mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3709.908mil|Location2.X=3712.22mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R18-1(60.606mm,16.43mm) on Multi-Layer And Track (60.606mm,17.136mm)(60.606mm,18.457mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3709.908mil|Location2.X=3712.22mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3709.908mil|Location2.X=3712.22mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R18-2(60.606mm,26.63mm) on Multi-Layer And Track (60.606mm,24.629mm)(60.606mm,25.95mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3838.056mil|Location2.X=3840.368mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3838.056mil|Location2.X=3840.368mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R19-1(63.861mm,16.43mm) on Multi-Layer And Track (63.861mm,17.136mm)(63.861mm,18.457mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3838.056mil|Location2.X=3840.368mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3838.056mil|Location2.X=3840.368mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R19-2(63.861mm,26.63mm) on Multi-Layer And Track (63.861mm,24.629mm)(63.861mm,25.95mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3966.482mil|Location2.X=3968.794mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3966.482mil|Location2.X=3968.794mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R20-1(67.123mm,16.43mm) on Multi-Layer And Track (67.123mm,17.136mm)(67.123mm,18.457mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3966.482mil|Location2.X=3968.794mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3966.482mil|Location2.X=3968.794mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R20-2(67.123mm,26.63mm) on Multi-Layer And Track (67.123mm,24.629mm)(67.123mm,25.95mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1953.056mil|Location2.X=1955.368mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1953.056mil|Location2.X=1955.368mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R2-1(15.982mm,2.393mm) on Multi-Layer And Track (15.982mm,3.099mm)(15.982mm,4.42mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1953.056mil|Location2.X=1955.368mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1953.056mil|Location2.X=1955.368mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R2-2(15.982mm,12.593mm) on Multi-Layer And Track (15.982mm,10.592mm)(15.982mm,11.913mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4094.908mil|Location2.X=4097.22mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4094.908mil|Location2.X=4097.22mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R22-1(70.385mm,16.43mm) on Multi-Layer And Track (70.385mm,17.136mm)(70.385mm,18.457mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4094.908mil|Location2.X=4097.22mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4094.908mil|Location2.X=4097.22mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R22-2(70.385mm,26.63mm) on Multi-Layer And Track (70.385mm,24.629mm)(70.385mm,25.95mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1611.482mil|Location2.X=1613.794mil|Location1.Y=4477.498mil|Location2.Y=4479.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1611.482mil|Location2.X=1613.794mil|Location1.Y=4477.498mil|Location2.Y=4479.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R3-1(7.306mm,30.502mm) on Multi-Layer And Track (7.306mm,31.208mm)(7.306mm,32.529mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1611.482mil|Location2.X=1613.794mil|Location1.Y=4824.166mil|Location2.Y=4826.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1611.482mil|Location2.X=1613.794mil|Location1.Y=4824.166mil|Location2.Y=4826.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R3-2(7.306mm,40.702mm) on Multi-Layer And Track (7.306mm,38.701mm)(7.306mm,40.022mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2086.48mil|Location2.X=2088.792mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2086.48mil|Location2.X=2088.792mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R4-1(19.371mm,2.393mm) on Multi-Layer And Track (19.371mm,3.099mm)(19.371mm,4.42mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2086.48mil|Location2.X=2088.792mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2086.48mil|Location2.X=2088.792mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R4-2(19.371mm,12.593mm) on Multi-Layer And Track (19.371mm,10.592mm)(19.371mm,11.913mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2218.844mil|Location2.X=2221.156mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2218.844mil|Location2.X=2221.156mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R5-1(22.733mm,2.393mm) on Multi-Layer And Track (22.733mm,3.099mm)(22.733mm,4.42mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2218.844mil|Location2.X=2221.156mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2218.844mil|Location2.X=2221.156mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R5-2(22.733mm,12.593mm) on Multi-Layer And Track (22.733mm,10.592mm)(22.733mm,11.913mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2418.056mil|Location2.X=2420.368mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2418.056mil|Location2.X=2420.368mil|Location1.Y=3370.844mil|Location2.Y=3373.156mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R6-1(27.793mm,2.393mm) on Multi-Layer And Track (27.793mm,3.099mm)(27.793mm,4.42mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2418.056mil|Location2.X=2420.368mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2418.056mil|Location2.X=2420.368mil|Location1.Y=3717.512mil|Location2.Y=3719.824mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R6-2(27.793mm,12.593mm) on Multi-Layer And Track (27.793mm,10.592mm)(27.793mm,11.913mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2826.7mil|Location2.X=2829.012mil|Location1.Y=4477.498mil|Location2.Y=4479.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2826.7mil|Location2.X=2829.012mil|Location1.Y=4477.498mil|Location2.Y=4479.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R7-1(38.173mm,30.502mm) on Multi-Layer And Track (38.173mm,31.208mm)(38.173mm,32.529mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2826.7mil|Location2.X=2829.012mil|Location1.Y=4824.166mil|Location2.Y=4826.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2826.7mil|Location2.X=2829.012mil|Location1.Y=4824.166mil|Location2.Y=4826.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R7-2(38.173mm,40.702mm) on Multi-Layer And Track (38.173mm,38.701mm)(38.173mm,40.022mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2678.056mil|Location2.X=2680.368mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2678.056mil|Location2.X=2680.368mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R8-1(34.397mm,16.43mm) on Multi-Layer And Track (34.397mm,17.136mm)(34.397mm,18.457mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2678.056mil|Location2.X=2680.368mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2678.056mil|Location2.X=2680.368mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R8-2(34.397mm,26.63mm) on Multi-Layer And Track (34.397mm,24.629mm)(34.397mm,25.95mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2826.7mil|Location2.X=2829.012mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2826.7mil|Location2.X=2829.012mil|Location1.Y=3923.498mil|Location2.Y=3925.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R9-1(38.173mm,16.43mm) on Multi-Layer And Track (38.173mm,17.136mm)(38.173mm,18.457mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2826.7mil|Location2.X=2829.012mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2826.7mil|Location2.X=2829.012mil|Location1.Y=4270.166mil|Location2.Y=4272.478mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad R9-2(38.173mm,26.63mm) on Multi-Layer And Track (38.173mm,24.629mm)(38.173mm,25.95mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1926.344mil|Location2.X=1928.656mil|Location1.Y=4075.278mil|Location2.Y=4077.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1926.344mil|Location2.X=1928.656mil|Location1.Y=4075.278mil|Location2.Y=4077.59mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad SCR1-1(15.557mm,20.836mm) on Multi-Layer And Track (15.303mm,20.937mm)(15.303mm,21.344mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1926.344mil|Location2.X=1928.656mil|Location1.Y=3879.152mil|Location2.Y=3881.464mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1926.344mil|Location2.X=1928.656mil|Location1.Y=3879.152mil|Location2.Y=3881.464mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad SCR1-3(15.557mm,16.518mm) on Multi-Layer And Track (15.303mm,16.01mm)(15.303mm,16.416mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2223.844mil|Location2.X=2226.156mil|Location1.Y=4075.278mil|Location2.Y=4077.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2223.844mil|Location2.X=2226.156mil|Location1.Y=4075.278mil|Location2.Y=4077.59mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad SCR2-1(23.114mm,20.836mm) on Multi-Layer And Track (22.86mm,20.937mm)(22.86mm,21.344mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2223.844mil|Location2.X=2226.156mil|Location1.Y=3879.152mil|Location2.Y=3881.464mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\study\CAD_CAM\CAD2_17\7A SCR BASED SSS SOLAR CHARGE CONRTOL\7A SCR BASED SSS SOLAR CHARGE CONRTOL.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2223.844mil|Location2.X=2226.156mil|Location1.Y=3879.152mil|Location2.Y=3881.464mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.05mm) Between Pad SCR2-3(23.114mm,16.518mm) on Multi-Layer And Track (22.86mm,16.01mm)(22.86mm,16.416mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

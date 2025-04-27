@@ -1,0 +1,8 @@
+Added Component: Designator=U1(TO-92-3_L4.9-W3.7-P1.27-L)
+Added Pin To Net: NetName=NetB1_1 Pin=U1-1
+Added Pin To Net: NetName=NetQ6_1 Pin=U1-2
+Added Pin To Net: NetName=NetB1_1 Pin=U1-3
+Added Member To Class: ClassName=7A SCR BASED SSS SOLAR CHARGE CONTROL Member=Component JP? JP 1x1 2.54
+Added Member To Class: ClassName=7A SCR BASED SSS SOLAR CHARGE CONTROL Member=Component JP? JP 1x1 2.54
+Added Member To Class: ClassName=7A SCR BASED SSS SOLAR CHARGE CONTROL Member=Component JP? JP 1x1 2.54
+Added Member To Class: ClassName=7A SCR BASED SSS SOLAR CHARGE CONTROL Member=Component U1 TL431
